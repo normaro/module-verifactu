@@ -1,0 +1,13 @@
+# PHPStan for the module, run inside a Magento project (Magento classes and generated factories
+# resolved by bitexpert/phpstan-magento). The Marketplace does not run PHPStan; this is our gate.
+includes:
+    - /var/www/html/vendor/bitexpert/phpstan-magento/extension.neon
+parameters:
+    level: 6
+    phpVersion: 80100
+    paths:
+        - .
+    excludePaths:
+        - vendor/*
+    magento:
+        magentoRoot: /var/www/html

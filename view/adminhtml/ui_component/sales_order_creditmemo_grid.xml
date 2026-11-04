@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_creditmemo_columns">
+        <column name="verifactu_number" sortOrder="200">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Quaderno number</label>
+            </settings>
+        </column>
+        <column name="verifactu_status" component="Magento_Ui/js/grid/columns/select" sortOrder="210">
+            <settings>
+                <options class="Normaro\Verifactu\Model\Config\Source\Status"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Verifactu</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

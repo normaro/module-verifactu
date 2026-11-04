@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_invoice_save_commit_after">
+        <observer name="normaro_verifactu_invoice" instance="Normaro\Verifactu\Observer\InvoiceSaveCommitAfter"/>
+    </event>
+    <event name="sales_order_creditmemo_save_commit_after">
+        <observer name="normaro_verifactu_creditmemo"
+                  instance="Normaro\Verifactu\Observer\CreditmemoSaveCommitAfter"/>
+    </event>
+</config>

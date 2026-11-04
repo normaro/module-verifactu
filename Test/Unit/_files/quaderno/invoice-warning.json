@@ -1,0 +1,149 @@
+{
+  "id": 623694,
+  "blocked": true,
+  "number": "F2026-00003",
+  "issue_date": "2026-11-03",
+  "created_at": 1793717193,
+  "contact": {
+    "id": 9795058,
+    "contact_person": null,
+    "created_at": 1793717192,
+    "department": null,
+    "email": null,
+    "full_name": "Cliente Prueba",
+    "kind": "company",
+    "language": "ES",
+    "notes": "",
+    "permalink": "<url-removed>",
+    "phone_1": null,
+    "processor": null,
+    "processor_id": null,
+    "tax_id": "<NIF>",
+    "tax_status": "taxable",
+    "web": null
+  },
+  "tax_id": "<NIF>",
+  "country": "ES",
+  "street_line_1": "Calle Prueba 1",
+  "street_line_2": null,
+  "city": "Alicante",
+  "region": null,
+  "postal_code": "03001",
+  "po_number": null,
+  "due_date": null,
+  "currency": "EUR",
+  "subject": null,
+  "deliveries": [
+    {
+      "state": "completed_with_warning",
+      "code": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=<NIF>&numserie=F2026-00003&fecha=03-11-2026&importe=121.0",
+      "delivered_at": 1793664000,
+      "recipient": "verifactu",
+      "service_response": {
+        "csv": "A-DEMO1793717320",
+        "datos_presentacion": {
+          "nif_presentador": "<NIF>",
+          "timestamp_presentacion": "2026-11-03 14:48:40 UTC"
+        },
+        "cabecera": {
+          "obligado_emision": {
+            "nombre_razon": "Vendedor Prueba",
+            "nif": "<NIF>"
+          }
+        },
+        "tiempo_espera_envio": "60",
+        "estado_envio": "ParcialmenteCorrecto",
+        "respuesta_linea": {
+          "id_factura": {
+            "id_emisor_factura": "<NIF>",
+            "num_serie_factura": "F2026-00003",
+            "fecha_expedicion_factura": "03-11-2026"
+          },
+          "operacion": {
+            "tipo_operacion": "Alta",
+            "subsanacion": "N",
+            "rechazo_previo": "N"
+          },
+          "estado_registro": "AceptadoConErrores",
+          "codigo_error_registro": "2006",
+          "descripcion_error_registro": "El campo CuotaTotal tiene un valor incorrecto para el valor de los campos CuotaRepercutida y CuotaRecargoEquivalencia suministrados."
+        },
+        "@xmlns:tik_r": "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/tike/cont/ws/RespuestaSuministro.xsd",
+        "@xmlns:tik": "https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/tike/cont/ws/SuministroInformacion.xsd"
+      },
+      "type": "registration"
+    }
+  ],
+  "items": [
+    {
+      "id": 841331,
+      "product_code": null,
+      "description": "P2 test product",
+      "reference": null,
+      "tax_1_name": "IVA",
+      "tax_1_rate": 21.0,
+      "tax_1_country": "ES",
+      "tax_1_region": null,
+      "tax_1_transaction_type": "standard",
+      "tax_2_name": null,
+      "tax_2_rate": null,
+      "tax_2_country": null,
+      "tax_2_region": null,
+      "tax_2_transaction_type": "standard",
+      "quantity": 1.0,
+      "unit_price_cents": 10000,
+      "subtotal_cents": 10000,
+      "discount_cents": 0,
+      "gross_amount_cents": 10000
+    }
+  ],
+  "subtotal_cents": 10000,
+  "discount_cents": 0,
+  "taxes": [
+    {
+      "label": "IVA (21%)",
+      "rate": 21.0,
+      "country": "ES",
+      "region": null,
+      "transaction_type": "standard",
+      "amount_cents": 2100
+    }
+  ],
+  "total_cents": 12100,
+  "processor_fee_cents": null,
+  "payments": [
+    {
+      "id": 472875,
+      "date": "2026-11-03",
+      "payment_method": "credit_card",
+      "amount_cents": 12100,
+      "processor": "magento-verifactu-sandbox",
+      "processor_id": "P2-other-nif",
+      "url": "<url-removed>"
+    }
+  ],
+  "payment_details": null,
+  "notes": null,
+  "state": "paid",
+  "delivery_state": null,
+  "evidence": {
+    "id": 311351,
+    "state": "confirmed",
+    "billing_country": "ES",
+    "ip_address": "255.255.255.255",
+    "ip_country": null,
+    "bank_country": "ES",
+    "notes": null
+  },
+  "credits": [],
+  "tag_list": [],
+  "secure_id": "<removed>",
+  "permalink": "<url-removed>",
+  "pdf": "<url-removed>",
+  "url": "<url-removed>",
+  "processor": "magento-verifactu-sandbox",
+  "processor_id": "P2-other-nif",
+  "custom_metadata": {},
+  "verification_code": null,
+  "verification_permalink": null
+}

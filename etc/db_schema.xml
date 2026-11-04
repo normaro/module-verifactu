@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="verifactu_document" resource="default" engine="innodb"
+           comment="Verifactu documents sent to the provider (one per invoice / credit memo)">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="source_type" nullable="false" length="16"
+                comment="invoice or creditmemo"/>
+        <column xsi:type="int" name="source_id" unsigned="true" nullable="false"
+                comment="Magento invoice / credit memo entity ID"/>
+        <column xsi:type="varchar" name="source_increment_id" nullable="true" length="50"
+                comment="Magento invoice / credit memo number"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Order ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0"
+                comment="Store ID"/>
+        <column xsi:type="varchar" name="processor_id" nullable="true" length="64"
+                comment="processor_id sent to the provider"/>
+        <column xsi:type="int" name="original_document_id" unsigned="true" nullable="true"
+                comment="Credit memo: row of the original invoice"/>
+        <column xsi:type="varchar" name="quaderno_id" nullable="true" length="32"
+                comment="Provider document ID"/>
+        <column xsi:type="varchar" name="quaderno_contact_id" nullable="true" length="32"
+                comment="Provider contact ID"/>
+        <column xsi:type="varchar" name="number" nullable="true" length="64"
+                comment="Provider document number (serie + number)"/>
+        <column xsi:type="varchar" name="type" nullable="true" length="16"
+                comment="invoice, receipt or credit"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="32" default="pending"
+                comment="Document status"/>
+        <column xsi:type="varchar" name="aeat_status" nullable="true" length="32"
+                comment="Last AEAT registration state reported by the provider"/>
+        <column xsi:type="varchar" name="verification_permalink" nullable="true" length="512"
+                comment="Provider verification page"/>
+        <column xsi:type="varchar" name="aeat_qr_url" nullable="true" length="512"
+                comment="AEAT QR / verification URL"/>
+        <column xsi:type="varchar" name="pdf_url" nullable="true" length="512" comment="PDF URL"/>
+        <column xsi:type="date" name="issue_date" nullable="true" comment="Issue date from the provider"/>
+        <column xsi:type="smallint" name="attempts" unsigned="true" nullable="false" default="0"
+                comment="Send attempts"/>
+        <column xsi:type="datetime" name="next_attempt_at" nullable="true" comment="Next retry"/>
+        <column xsi:type="text" name="last_error" nullable="true" comment="Last error or block reason"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Updated at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="VERIFACTU_DOCUMENT_SOURCE_TYPE_SOURCE_ID">
+            <column name="source_type"/>
+            <column name="source_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="VERIFACTU_DOC_ORIGINAL_DOC_ID_VERIFACTU_DOC_ENTT_ID"
+                    table="verifactu_document" column="original_document_id"
+                    referenceTable="verifactu_document" referenceColumn="entity_id" onDelete="SET NULL"/>
+        <index referenceId="VERIFACTU_DOCUMENT_STATUS_NEXT_ATTEMPT_AT" indexType="btree">
+            <column name="status"/>
+            <column name="next_attempt_at"/>
+        </index>
+        <index referenceId="VERIFACTU_DOCUMENT_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+    </table>
+    <table name="verifactu_customer_contact" resource="default" engine="innodb"
+           comment="Provider contact per registered customer and environment">
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="false" comment="Customer ID"/>
+        <column xsi:type="varchar" name="environment" nullable="false" length="16"
+                comment="sandbox or live"/>
+        <column xsi:type="varchar" name="contact_id" nullable="false" length="32"
+                comment="Provider contact ID"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Updated at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="customer_id"/>
+            <column name="environment"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="VERIFACTU_CUSTOMER_CONTACT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="verifactu_customer_contact" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Our own interface only; no preferences on core classes -->
+    <preference for="Normaro\Verifactu\Api\ProviderInterface"
+                type="Normaro\Verifactu\Model\Quaderno\QuadernoProvider"/>
+    <!-- Data source of the Sales > Verifactu documents grid -->
+    <virtualType name="NormaroVerifactuDocumentGrid"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">verifactu_document</argument>
+            <argument name="resourceModel" xsi:type="string">Normaro\Verifactu\Model\ResourceModel\Document</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="verifactu_documents_data_source" xsi:type="string">NormaroVerifactuDocumentGrid</item>
+            </argument>
+        </arguments>
+        <plugin name="normaro_verifactu_sales_grid_columns"
+                type="Normaro\Verifactu\Plugin\SalesGridVerifactuColumns"/>
+    </type>
+    <virtualType name="NormaroVerifactuLogHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/verifactu.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="NormaroVerifactuMonolog" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">verifactu</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="file" xsi:type="object">NormaroVerifactuLogHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Normaro\Verifactu\Model\Log\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">NormaroVerifactuMonolog</argument>
+        </arguments>
+    </type>
+</config>

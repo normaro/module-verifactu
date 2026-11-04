@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+
+/** @var \Normaro\Verifactu\Block\Adminhtml\Document\Info $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$document = $block->getDocument();
+$notSent = __('Not sent to Quaderno (module disabled, not paid yet, or created before the module was installed).');
+?>
+<section class="admin__page-section verifactu-document">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(__('Verifactu')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?php if ($document === null): ?>
+            <p><?= $escaper->escapeHtml($notSent) ?></p>
+        <?php else: ?>
+            <table class="admin__table-secondary">
+                <tbody>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Status')) ?></th>
+                    <td><?= $escaper->escapeHtml(__($block->getStatusLabel($document))) ?></td>
+                </tr>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Quaderno number')) ?></th>
+                    <td><?= $escaper->escapeHtml((string)$document->getData('number') ?: '-') ?>
+                        <?php if ($document->getData('type')): ?>
+                            (<?= $escaper->escapeHtml((string)$document->getData('type')) ?>)
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('AEAT')) ?></th>
+                    <td><?= $escaper->escapeHtml((string)$document->getData('aeat_status') ?: '-') ?></td>
+                </tr>
+                <tr>
+                    <th><?= $escaper->escapeHtml(__('Issue date')) ?></th>
+                    <td><?= $escaper->escapeHtml((string)$document->getData('issue_date') ?: '-') ?></td>
+                </tr>
+                <?php $links = [
+                    'aeat_qr_url' => __('AEAT verification (QR)'),
+                    'verification_permalink' => __('Quaderno verification page'),
+                    'pdf_url' => __('PDF'),
+                ]; ?>
+                <?php foreach ($links as $field => $label): ?>
+                    <?php if ($document->getData($field)): ?>
+                        <tr>
+                            <th><?= $escaper->escapeHtml($label) ?></th>
+                            <td>
+                                <a href="<?= $escaper->escapeUrl((string)$document->getData($field)) ?>"
+                                   target="_blank" rel="noopener noreferrer"><?= $escaper->escapeHtml(__('Open')) ?></a>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <?php if ($document->getData('last_error')): ?>
+                    <tr>
+                        <th><?= $escaper->escapeHtml(__('Message')) ?></th>
+                        <td><?= $escaper->escapeHtml((string)$document->getData('last_error')) ?></td>
+                    </tr>
+                <?php endif; ?>
+                </tbody>
+            </table>
+            <?php if ($block->canResend($document)): ?>
+                <form method="post" action="<?= $escaper->escapeUrl($block->getResendUrl($document)) ?>">
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <button type="submit" class="action-secondary">
+                        <span><?= $escaper->escapeHtml(__('Resend to Quaderno')) ?></span>
+                    </button>
+                </form>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+</section>

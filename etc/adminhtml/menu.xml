@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Normaro_Verifactu::documents" title="Verifactu Documents" translate="title"
+             module="Normaro_Verifactu" sortOrder="60" parent="Magento_Sales::sales_operation"
+             action="verifactu/document/index" resource="Normaro_Verifactu::documents"/>
+    </menu>
+</config>

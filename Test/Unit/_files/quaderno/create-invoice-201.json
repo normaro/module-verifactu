@@ -1,0 +1,94 @@
+{
+  "id": 623644,
+  "contact": {
+    "id": 9794927,
+    "city": "Alicante",
+    "contact_person": null,
+    "country": "ES",
+    "created_at": 1793711958,
+    "department": null,
+    "email": null,
+    "first_name": "Vendedor",
+    "full_name": "Vendedor Prueba",
+    "kind": "company",
+    "language": "ES",
+    "notes": null,
+    "permalink": "<url-removed>",
+    "phone_1": null,
+    "postal_code": "03001",
+    "processor": null,
+    "processor_id": null,
+    "region": null,
+    "registration_number": null,
+    "street_line_1": "Calle Prueba 1",
+    "street_line_2": null,
+    "tax_id": "<NIF>",
+    "tax_status": "taxable",
+    "web": null
+  },
+  "created_at": 1793711958,
+  "currency": "EUR",
+  "custom_metadata": {},
+  "discount_cents": 0,
+  "evidence": {
+    "bank_country": "ES",
+    "billing_country": "ES",
+    "created_at": 1793711958,
+    "ip_address": "255.255.255.255",
+    "ip_country": null,
+    "state": "confirmed",
+    "notes": null
+  },
+  "issue_date": "2026-11-03",
+  "items": [
+    {
+      "created_at": 1793711958,
+      "description": "T0 test product",
+      "discount_cents": 0,
+      "discount_rate": 0.0,
+      "quantity": 1.0,
+      "subtotal_cents": 10000,
+      "tax_code": "standard",
+      "tax_country": "ES",
+      "tax_name": "IVA",
+      "tax_rate": 21.0,
+      "tax_region": null,
+      "taxable_part": "100.0",
+      "total_amount_cents": 12100,
+      "unit_price": 100.0
+    }
+  ],
+  "notes": null,
+  "number": "F2026-00001",
+  "payments": [
+    {
+      "id": 472833,
+      "amount_cents": 12100,
+      "created_at": 1793711959,
+      "date": "2026-11-03",
+      "payment_method": "credit_card",
+      "processor": "magento-verifactu-sandbox",
+      "processor_id": "T0-20241028-1"
+    }
+  ],
+  "pdf": "<url-removed>",
+  "permalink": "<url-removed>",
+  "po_number": null,
+  "processor": "magento-verifactu-sandbox",
+  "processor_id": "T0-20241028-1",
+  "state": "paid",
+  "subtotal_cents": 10000,
+  "tags": "",
+  "taxes": [
+    {
+      "amount_cents": 2100,
+      "country": "ES",
+      "label": "IVA (21%)",
+      "rate": 21.0,
+      "region": null,
+      "tax_code": "standard"
+    }
+  ],
+  "total_cents": 12100,
+  "type": "Invoice"
+}

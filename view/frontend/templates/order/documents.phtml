@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+
+/** @var \Normaro\Verifactu\Block\Order\Documents $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$documents = $block->getDocuments();
+$links = [
+    'pdf_url' => __('PDF'),
+    'verification_permalink' => __('View invoice'),
+    'aeat_qr_url' => __('Verify at AEAT'),
+];
+?>
+<?php if ($documents): ?>
+    <div class="block block-order-verifactu">
+        <div class="block-title"><strong><?= $escaper->escapeHtml(__('Invoices (Verifactu)')) ?></strong></div>
+        <div class="block-content">
+            <ul>
+                <?php foreach ($documents as $document): ?>
+                    <li>
+                        <?= $escaper->escapeHtml((string)$document->getData('number')) ?>
+                        <?php if ($document->getData('issue_date')): ?>
+                            (<?= $escaper->escapeHtml((string)$document->getData('issue_date')) ?>)
+                        <?php endif; ?>
+                        <?php foreach ($links as $field => $label): ?>
+                            <?php if ($document->getData($field)): ?>
+                                · <a href="<?= $escaper->escapeUrl((string)$document->getData($field)) ?>"
+                                     target="_blank" rel="noopener noreferrer"><?= $escaper->escapeHtml($label) ?></a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

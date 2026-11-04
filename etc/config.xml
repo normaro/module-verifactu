@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <verifactu>
+            <general>
+                <enabled>0</enabled>
+                <environment>sandbox</environment>
+                <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <trigger>capture</trigger>
+                <threshold>3000</threshold>
+                <debug>0</debug>
+            </general>
+        </verifactu>
+    </default>
+</config>

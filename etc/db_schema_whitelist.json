@@ -1,0 +1,50 @@
+{
+    "verifactu_document": {
+        "column": {
+            "entity_id": true,
+            "source_type": true,
+            "source_id": true,
+            "source_increment_id": true,
+            "order_id": true,
+            "store_id": true,
+            "processor_id": true,
+            "original_document_id": true,
+            "quaderno_id": true,
+            "quaderno_contact_id": true,
+            "number": true,
+            "type": true,
+            "status": true,
+            "aeat_status": true,
+            "verification_permalink": true,
+            "aeat_qr_url": true,
+            "pdf_url": true,
+            "issue_date": true,
+            "attempts": true,
+            "next_attempt_at": true,
+            "last_error": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "VERIFACTU_DOCUMENT_STATUS_NEXT_ATTEMPT_AT": true,
+            "VERIFACTU_DOCUMENT_ORDER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "VERIFACTU_DOCUMENT_SOURCE_TYPE_SOURCE_ID": true,
+            "FK_F9CB1CCDE51FD100F7AB69985BAEDB2E": true
+        }
+    },
+    "verifactu_customer_contact": {
+        "column": {
+            "customer_id": true,
+            "environment": true,
+            "contact_id": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "VERIFACTU_CUSTOMER_CONTACT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}

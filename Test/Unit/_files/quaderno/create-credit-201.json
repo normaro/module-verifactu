@@ -1,0 +1,89 @@
+{
+  "id": 623700,
+  "contact": {
+    "id": 9795037,
+    "city": null,
+    "contact_person": null,
+    "country": "ES",
+    "created_at": 1793716328,
+    "department": null,
+    "email": null,
+    "first_name": "Cliente",
+    "full_name": "Cliente Prueba",
+    "kind": "company",
+    "language": "ES",
+    "notes": null,
+    "permalink": "<url-removed>",
+    "phone_1": null,
+    "postal_code": "03001",
+    "processor": null,
+    "processor_id": null,
+    "region": null,
+    "registration_number": null,
+    "street_line_1": null,
+    "street_line_2": null,
+    "tax_id": null,
+    "tax_status": "taxable",
+    "web": null
+  },
+  "created_at": 1793718193,
+  "currency": "EUR",
+  "custom_metadata": {},
+  "discount_cents": 0,
+  "issue_date": "2026-11-03",
+  "items": [
+    {
+      "created_at": 1793718193,
+      "description": "Refund P1 399",
+      "discount_cents": 0,
+      "discount_rate": 0.0,
+      "quantity": 1.0,
+      "subtotal_cents": 32975,
+      "tax_code": "standard",
+      "tax_country": "ES",
+      "tax_name": "IVA",
+      "tax_rate": 21.0,
+      "tax_region": null,
+      "taxable_part": "100.0",
+      "total_amount_cents": 39900,
+      "unit_price": 329.75
+    }
+  ],
+  "notes": null,
+  "number": "FRS2026-00001",
+  "payments": [
+    {
+      "id": 472879,
+      "amount_cents": 39900,
+      "created_at": 1793718193,
+      "date": "2026-11-03",
+      "payment_method": "credit_card",
+      "processor": "magento-verifactu-sandbox",
+      "processor_id": "P1-399"
+    }
+  ],
+  "pdf": "<url-removed>",
+  "permalink": "<url-removed>",
+  "po_number": null,
+  "processor": "magento-verifactu-sandbox",
+  "processor_id": "P1-399_1793718193",
+  "related_document": {
+    "id": 623683,
+    "type": "Receipt"
+  },
+  "state": "paid",
+  "subtotal_cents": 32975,
+  "tags": "",
+  "taxes": [
+    {
+      "amount_cents": 6925,
+      "country": "ES",
+      "label": "IVA (21%)",
+      "rate": 21.0,
+      "region": null,
+      "tax_code": "standard"
+    }
+  ],
+  "total_cents": 39900,
+  "type": "Credit"
+}

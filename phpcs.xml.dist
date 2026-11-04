@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  Our gate. The Marketplace code sniffer itself runs the Magento2 standard on php and phtml
+  files, ignores annotations and blocks only on severity-10 errors (see
+  tools/ci/module-gates.sh in the repository). Here warnings (severity 5 to 9) fail too.
+-->
+<ruleset name="NormaroVerifactu">
+    <description>Magento2 coding standard + PHP 8.1 compatibility</description>
+    <file>.</file>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <arg name="extensions" value="php,phtml"/>
+    <arg value="sp"/>
+    <rule ref="Magento2"/>
+    <!-- Magento 2.4.6 supports PHP 8.1: keep the code 8.1-compatible -->
+    <config name="testVersion" value="8.1-"/>
+    <rule ref="PHPCompatibility"/>
+</ruleset>
