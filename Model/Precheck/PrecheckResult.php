@@ -22,12 +22,15 @@ class PrecheckResult
      * @param string|null $reason
      * @param DocumentData|null $data mapped document when the outcome is OK
      * @param string[] $warnings non-blocking notes shown in the admin
+     * @param bool $permanent blocked for a reason a resend cannot fix (no Resend button)
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag) value object: the flag is data, not a code path
      */
     public function __construct(
         public readonly string $outcome,
         public readonly ?string $reason = null,
         public readonly ?DocumentData $data = null,
-        public readonly array $warnings = []
+        public readonly array $warnings = [],
+        public readonly bool $permanent = false
     ) {
     }
 }

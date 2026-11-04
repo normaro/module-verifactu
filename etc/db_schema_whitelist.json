@@ -22,6 +22,7 @@
             "attempts": true,
             "next_attempt_at": true,
             "last_error": true,
+            "block_permanent": true,
             "created_at": true,
             "updated_at": true
         },

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) Iurii Tkachenko. Licensed under OSL-3.0, see LICENSE.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Verifactu block right after "Invoice / Credit Memo Information" on the admin view pages -->
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\Info">
+        <plugin name="normaro_verifactu_document_block_position"
+                type="Normaro\Verifactu\Plugin\AdminDocumentBlockPosition"/>
+    </type>
+</config>

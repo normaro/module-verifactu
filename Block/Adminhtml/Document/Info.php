@@ -89,7 +89,7 @@ class Info extends Template
     }
 
     /**
-     * Resend button shown: not issued and the admin may resend.
+     * Resend button shown: not issued, not blocked for good, and the admin may resend.
      *
      * @param Document $document
      * @return bool
@@ -98,6 +98,7 @@ class Info extends Template
     {
         return !$document->isIssued()
             && (string)$document->getData('status') !== Document::STATUS_QUEUED
+            && !(int)$document->getData('block_permanent')
             && $this->_authorization->isAllowed('Normaro_Verifactu::resend');
     }
 

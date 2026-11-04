@@ -45,6 +45,8 @@
                 comment="Send attempts"/>
         <column xsi:type="datetime" name="next_attempt_at" nullable="true" comment="Next retry"/>
         <column xsi:type="text" name="last_error" nullable="true" comment="Last error or block reason"/>
+        <column xsi:type="smallint" name="block_permanent" unsigned="true" nullable="false" default="0"
+                comment="1 = blocked for a reason a resend cannot fix"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
                 default="CURRENT_TIMESTAMP" comment="Created at"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false"

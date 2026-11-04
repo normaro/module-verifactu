@@ -115,7 +115,7 @@ class Precheck
                 return $this->blocked((string)__(
                     'Not sent: this invoice already has a credit note, and Quaderno links only one per invoice'
                     . ' through the API. Create this refund as a credit note directly in Quaderno.'
-                ));
+                ), true);
             }
         }
         return null;
@@ -150,7 +150,7 @@ class Precheck
                 . ' send. Create the document in Quaderno, or leave the adjustment out (products and shipping'
                 . ' only).',
                 number_format(abs($data->grandTotal - $data->linesTotal()), 2, '.', '')
-            ));
+            ), true);
         }
         $address = $this->checkAddress($data);
         if ($address !== null) {
@@ -262,10 +262,12 @@ class Precheck
      * Blocked result.
      *
      * @param string $reason
+     * @param bool $permanent a resend cannot fix it (second credit note, adjustment)
      * @return PrecheckResult
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag) the flag is stored on the result, not a code path
      */
-    private function blocked(string $reason): PrecheckResult
+    private function blocked(string $reason, bool $permanent = false): PrecheckResult
     {
-        return new PrecheckResult(PrecheckResult::BLOCKED, $reason);
+        return new PrecheckResult(PrecheckResult::BLOCKED, $reason, null, [], $permanent);
     }
 }

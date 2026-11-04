@@ -7,14 +7,16 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
+        <!-- Child of the page form, not rendered by its template: Plugin\AdminDocumentBlockPosition puts it
+             right after the "Credit Memo Information" section. -->
+        <referenceBlock name="form">
             <block class="Normaro\Verifactu\Block\Adminhtml\Document\Info" name="verifactu.document.info"
-                   template="Normaro_Verifactu::document/info.phtml" after="-">
+                   template="Normaro_Verifactu::document/info.phtml">
                 <arguments>
                     <argument name="source_type" xsi:type="string">creditmemo</argument>
                     <argument name="id_param" xsi:type="string">creditmemo_id</argument>
                 </arguments>
             </block>
-        </referenceContainer>
+        </referenceBlock>
     </body>
 </page>

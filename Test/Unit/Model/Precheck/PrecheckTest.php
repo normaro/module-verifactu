@@ -99,6 +99,7 @@ class PrecheckTest extends TestCase
 
         $this->assertSame(PrecheckResult::BLOCKED, $result->outcome);
         $this->assertStringContainsString('NIF required', (string)$result->reason);
+        $this->assertFalse($result->permanent, 'adding the NIF and resending fixes it');
     }
 
     /**
@@ -202,6 +203,7 @@ class PrecheckTest extends TestCase
 
         $this->assertSame(PrecheckResult::BLOCKED, $result->outcome);
         $this->assertStringContainsString('is an adjustment, fee or gift card', (string)$result->reason);
+        $this->assertTrue($result->permanent, 'no Resend for an adjustment');
     }
 
     /**
@@ -351,6 +353,7 @@ class PrecheckTest extends TestCase
 
         $this->assertSame(PrecheckResult::BLOCKED, $result->outcome);
         $this->assertStringContainsString('already has a credit note', (string)$result->reason);
+        $this->assertTrue($result->permanent, 'no Resend for a second credit note');
     }
 
     /**

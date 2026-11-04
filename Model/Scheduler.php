@@ -153,6 +153,7 @@ class Scheduler
     {
         $previous = (string)$row->getData('status');
         $row->setData('attempts', 0);
+        $row->setData('block_permanent', $result->outcome === PrecheckResult::BLOCKED && $result->permanent ? 1 : 0);
         if ($result->outcome === PrecheckResult::BLOCKED) {
             $wasBlocked = $row->getData('status') === Document::STATUS_BLOCKED
                 && $row->getData('last_error') === $result->reason;
