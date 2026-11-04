@@ -67,6 +67,9 @@ Recommended Magento setup:
   Melilla (postcodes 35, 38, 51, 52);
 - EU B2B: VIES validation on, and the "Group for Invalid VAT ID" and "Validation Error Group"
   must not be the 0 % group (Quaderno does not check VAT numbers);
+- Magento's own invoice and credit memo emails: disable them (Sales Emails › Invoice / Credit
+  Memo) or change their templates; they show the Magento number, not the Verifactu invoice, and
+  are sent before Quaderno issues it (the config section shows the same warning);
 - do not filter mail from `noreply@quadernoapp.com`: its "Review pending documents" email is the
   only signal about a draft outside the API.
 

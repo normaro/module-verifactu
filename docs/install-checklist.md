@@ -49,9 +49,12 @@ Decisions marked *(adviser)* are tax decisions: agree them with your asesor / ge
       "Group for Valid VAT ID - Intra-Union" may be the 0 % B2B group; "Group for Invalid VAT
       ID" and "Validation Error Group" must **not** be. Quaderno does not check VAT numbers and
       takes the 0 % as sent.
-- [ ] Magento's own invoice and credit memo emails to customers are disabled, or carry the
-      Quaderno PDF instead: an invoice has one original (RF art. 14.1), and the Magento number
-      is not the Verifactu number.
+- [ ] Magento's own invoice and credit memo emails to customers are disabled (Stores ›
+      Configuration › Sales › Sales Emails › Invoice / Credit Memo › Enabled = No), or their
+      templates no longer look like an invoice. They carry the Magento number, not the Verifactu
+      one, and are sent before Quaderno issues the invoice; an invoice has one original (RF
+      art. 14.1). The same applies to "Print Invoice" in the customer account and the admin.
+      The legal invoice is Quaderno's (PDF and AEAT link in the customer's order view).
 - [ ] Gift cards: not supported in v0.1. Orders paid partly with a gift card are blocked
       (totals do not add up), and the module cannot tell a multi-purpose card sold as a
       product from an ordinary product *(adviser before selling gift cards)*.
