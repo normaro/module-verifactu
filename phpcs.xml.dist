@@ -11,6 +11,10 @@
     <arg name="extensions" value="php,phtml"/>
     <arg value="sp"/>
     <rule ref="Magento2"/>
+    <!-- Config comments are translation keys: one line each, so they may be long -->
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>*/etc/adminhtml/system.xml</exclude-pattern>
+    </rule>
     <!-- Magento 2.4.6 supports PHP 8.1: keep the code 8.1-compatible -->
     <config name="testVersion" value="8.1-"/>
     <rule ref="PHPCompatibility"/>

@@ -49,16 +49,14 @@
                 <field id="threshold" translate="label comment" type="text" sortOrder="60" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>Simplified invoice limit, EUR incl. IVA</label>
-                    <comment><![CDATA[Use the same amount as the receipt limit in Quaderno. Spanish orders
-                        without a NIF from this amount are held until a NIF is added.]]></comment>
+                    <comment>Use the same amount as the receipt limit in Quaderno. Spanish orders without a NIF from this amount are held until a NIF is added.</comment>
                     <validate>required-entry validate-number validate-greater-than-zero</validate>
                 </field>
                 <field id="debug" translate="label comment" type="select" sortOrder="70" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>Debug logging</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Yes: log every exchange with Quaderno in var/log/verifactu.log, for support.
-                        No: errors and status changes only. The API key and tax IDs are never written.]]></comment>
+                    <comment>Yes: log every exchange with Quaderno in var/log/verifactu.log, for support. No: errors and status changes only. The API key and tax IDs are never written.</comment>
                 </field>
             </group>
             <group id="tax" translate="label" type="text" sortOrder="20" showInDefault="1"
@@ -69,9 +67,7 @@
                     <label>Tax class to IVA</label>
                     <frontend_model>Normaro\Verifactu\Block\Adminhtml\System\Config\TaxMapping</frontend_model>
                     <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
-                    <comment><![CDATA[Every product tax class used in orders, and the shipping tax class, needs a row.
-                        The rate is the Spanish IVA rate of the class; for 0 % destinations (Canarias,
-                        Ceuta, Melilla, EU B2B, export) the rate Magento charged is sent.]]></comment>
+                    <comment>Every product tax class used in orders, and the shipping tax class, needs a row. The rate is the Spanish IVA rate of the class; for 0 % destinations (Canarias, Ceuta, Melilla, EU B2B, export) the rate Magento charged is sent.</comment>
                 </field>
             </group>
             <group id="footer" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">

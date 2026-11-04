@@ -46,13 +46,12 @@ class Resend extends Action implements HttpPostActionInterface
         try {
             $row = $this->documentRepository->getById((int)$this->getRequest()->getParam('id'));
             $status = $this->resender->resend($row);
-            $this->messageManager->addSuccessMessage((string)__(
-                in_array($status, Sender::REFRESH_STATUSES, true)
-                    ? 'Verifactu, %1: %2; a refresh from Quaderno is queued.'
-                    : 'Verifactu, %1: %2.',
-                $row->getMagentoLabel(),
-                Document::STATUS_LABELS[$status] ?? $status
-            ));
+            $label = $row->getMagentoLabel();
+            $statusText = Document::STATUS_LABELS[$status] ?? $status;
+            $statusLabel = __($statusText);
+            $this->messageManager->addSuccessMessage(in_array($status, Sender::REFRESH_STATUSES, true)
+                ? (string)__('Verifactu, %1: %2; a refresh from Quaderno is queued.', $label, $statusLabel)
+                : (string)__('Verifactu, %1: %2.', $label, $statusLabel));
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
