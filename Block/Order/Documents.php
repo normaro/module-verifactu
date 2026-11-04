@@ -56,4 +56,22 @@ class Documents extends Template
         }
         return $documents;
     }
+
+    /**
+     * Issue date in the store locale (the provider date has no time; formatted in UTC so it never shifts).
+     *
+     * @param Document $document
+     * @return string
+     */
+    public function getIssueDate(Document $document): string
+    {
+        $date = (string)$document->getData('issue_date');
+        return $date === '' ? '' : (string)$this->_localeDate->formatDateTime(
+            $date,
+            \IntlDateFormatter::MEDIUM,
+            \IntlDateFormatter::NONE,
+            null,
+            'UTC'
+        );
+    }
 }
