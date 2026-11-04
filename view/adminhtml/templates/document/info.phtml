@@ -7,6 +7,8 @@
 /** @var \Magento\Framework\Escaper $escaper */
 $document = $block->getDocument();
 $notSent = __('Not sent to Quaderno (module disabled, not paid yet, or created before the module was installed).');
+$link = static fn (string $url, $label): string => '<a href="' . $escaper->escapeUrl($url)
+    . '" target="_blank" rel="noopener noreferrer">' . $escaper->escapeHtml($label) . '</a>';
 ?>
 <section class="admin__page-section verifactu-document">
     <div class="admin__page-section-title">
@@ -16,54 +18,39 @@ $notSent = __('Not sent to Quaderno (module disabled, not paid yet, or created b
         <?php if ($document === null): ?>
             <p><?= $escaper->escapeHtml($notSent) ?></p>
         <?php else: ?>
-            <table class="admin__table-secondary">
+            <?php
+            $aeat = (string)$document->getData('aeat_status');
+            $rows = [
+                [__('Status'), $escaper->escapeHtml(__($block->getStatusLabel($document)))],
+                [__('Invoice number'), $escaper->escapeHtml((string)$document->getData('number'))],
+                [__('Type'), $escaper->escapeHtml($document->getData('type') ? __($document->getTypeLabel()) : '')],
+                [__('AEAT'), $aeat === '' ? '' : '<span title="' . $escaper->escapeHtmlAttr($aeat) . '">'
+                    . $escaper->escapeHtml(__($document->getAeatLabel())) . '</span>'],
+                [__('Issue date'), $escaper->escapeHtml($block->getIssueDate($document))],
+                [__('Verification'), $document->getData('aeat_qr_url')
+                    ? $link((string)$document->getData('aeat_qr_url'), __('Verify at AEAT')) : ''],
+                [__('Quaderno verification page'), $document->getProviderPageUrl() !== null
+                    ? $link((string)$document->getProviderPageUrl(), __('View in Quaderno')) : ''],
+                [__('PDF'), $document->getData('pdf_url')
+                    ? $link((string)$document->getData('pdf_url'), __('Download PDF')) : ''],
+                [__('Message'), $escaper->escapeHtml((string)$document->getData('last_error'))],
+            ];
+            ?>
+            <table class="admin__table-secondary verifactu-document-table">
                 <tbody>
-                <tr>
-                    <th><?= $escaper->escapeHtml(__('Status')) ?></th>
-                    <td><?= $escaper->escapeHtml(__($block->getStatusLabel($document))) ?></td>
-                </tr>
-                <tr>
-                    <th><?= $escaper->escapeHtml(__('Quaderno number')) ?></th>
-                    <td><?= $escaper->escapeHtml((string)$document->getData('number') ?: '-') ?>
-                        <?php if ($document->getData('type')): ?>
-                            (<?= $escaper->escapeHtml((string)$document->getData('type')) ?>)
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?= $escaper->escapeHtml(__('AEAT')) ?></th>
-                    <td><?= $escaper->escapeHtml((string)$document->getData('aeat_status') ?: '-') ?></td>
-                </tr>
-                <tr>
-                    <th><?= $escaper->escapeHtml(__('Issue date')) ?></th>
-                    <td><?= $escaper->escapeHtml((string)$document->getData('issue_date') ?: '-') ?></td>
-                </tr>
-                <?php $links = [
-                    'aeat_qr_url' => __('AEAT verification (QR)'),
-                    'verification_permalink' => __('Quaderno verification page'),
-                    'pdf_url' => __('PDF'),
-                ]; ?>
-                <?php foreach ($links as $field => $label): ?>
-                    <?php if ($document->getData($field)): ?>
+                <?php foreach ($rows as [$label, $html]): ?>
+                    <?php if ($html !== ''): ?>
                         <tr>
                             <th><?= $escaper->escapeHtml($label) ?></th>
-                            <td>
-                                <a href="<?= $escaper->escapeUrl((string)$document->getData($field)) ?>"
-                                   target="_blank" rel="noopener noreferrer"><?= $escaper->escapeHtml(__('Open')) ?></a>
-                            </td>
+                            <td><?= /* @noEscape */ $html ?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <?php if ($document->getData('last_error')): ?>
-                    <tr>
-                        <th><?= $escaper->escapeHtml(__('Message')) ?></th>
-                        <td><?= $escaper->escapeHtml((string)$document->getData('last_error')) ?></td>
-                    </tr>
-                <?php endif; ?>
                 </tbody>
             </table>
             <?php if ($block->canResend($document)): ?>
-                <form method="post" action="<?= $escaper->escapeUrl($block->getResendUrl($document)) ?>">
+                <form method="post" class="verifactu-document-resend"
+                      action="<?= $escaper->escapeUrl($block->getResendUrl($document)) ?>">
                     <?= $block->getBlockHtml('formkey') ?>
                     <button type="submit" class="action-secondary">
                         <span><?= $escaper->escapeHtml(__('Resend to Quaderno')) ?></span>

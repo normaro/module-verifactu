@@ -40,7 +40,7 @@ class TaxMapping extends AbstractFieldArray
             'style' => 'width:60px',
         ]);
         $this->addColumn('tax_code', [
-            'label' => __('Quaderno tax code'),
+            'label' => __('Tax type in Quaderno'),
             'renderer' => $this->getTaxCodeRenderer(),
         ]);
         $this->_addAfter = false;

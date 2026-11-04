@@ -40,7 +40,7 @@ class Index extends Action implements HttpGetActionInterface
         /** @var Page $page */
         $page = $this->pageFactory->create();
         $page->setActiveMenu('Normaro_Verifactu::documents');
-        $page->getConfig()->getTitle()->prepend((string)__('Verifactu documents'));
+        $page->getConfig()->getTitle()->prepend((string)__('Verifactu Documents'));
         return $page;
     }
 }

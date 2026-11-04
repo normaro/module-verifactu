@@ -71,6 +71,24 @@ class Info extends Template
     }
 
     /**
+     * Issue date in the admin locale (the provider date has no time; formatted in UTC so it never shifts).
+     *
+     * @param Document $document
+     * @return string
+     */
+    public function getIssueDate(Document $document): string
+    {
+        $date = (string)$document->getData('issue_date');
+        return $date === '' ? '' : (string)$this->_localeDate->formatDateTime(
+            $date,
+            \IntlDateFormatter::MEDIUM,
+            \IntlDateFormatter::NONE,
+            null,
+            'UTC'
+        );
+    }
+
+    /**
      * Resend button shown: not issued and the admin may resend.
      *
      * @param Document $document

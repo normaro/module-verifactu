@@ -10,7 +10,7 @@
         <column name="verifactu_number" sortOrder="200">
             <settings>
                 <filter>text</filter>
-                <label translate="true">Quaderno number</label>
+                <label translate="true">Verifactu number</label>
             </settings>
         </column>
         <column name="verifactu_status" component="Magento_Ui/js/grid/columns/select" sortOrder="210">

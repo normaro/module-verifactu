@@ -89,12 +89,17 @@
         <column name="number" sortOrder="40">
             <settings>
                 <filter>text</filter>
-                <label translate="true">Quaderno number</label>
+                <fieldClass>
+                    <class name="verifactu-nowrap">true</class>
+                </fieldClass>
+                <label translate="true">Invoice number</label>
             </settings>
         </column>
-        <column name="type" sortOrder="50">
+        <column name="type" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
             <settings>
-                <filter>text</filter>
+                <options class="Normaro\Verifactu\Model\Config\Source\DocumentType"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
                 <label translate="true">Type</label>
             </settings>
         </column>
@@ -106,9 +111,11 @@
                 <label translate="true">Status</label>
             </settings>
         </column>
-        <column name="aeat_status" sortOrder="70">
+        <column name="aeat_status" component="Magento_Ui/js/grid/columns/select" sortOrder="70">
             <settings>
-                <filter>text</filter>
+                <options class="Normaro\Verifactu\Model\Config\Source\AeatState"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
                 <label translate="true">AEAT</label>
             </settings>
         </column>
@@ -117,8 +124,11 @@
             <settings>
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
-                <dateFormat>yyyy-MM-dd</dateFormat>
+                <dateFormat>MMM d, y</dateFormat>
                 <timezone>false</timezone>
+                <fieldClass>
+                    <class name="verifactu-nowrap">true</class>
+                </fieldClass>
                 <label translate="true">Issue date</label>
             </settings>
         </column>

@@ -71,8 +71,9 @@ class Precheck
     {
         $originalId = (int)$row->getData('original_document_id');
         if ($originalId <= 0) {
-            return $this->blocked('The original invoice has no Verifactu document, so the credit memo cannot be'
-                . ' linked to it.');
+            return $this->blocked((string)__(
+                'The original invoice has no Verifactu document, so the credit memo cannot be linked to it.'
+            ));
         }
         $original = $this->documentRepository->getById($originalId);
         $originalCheck = $this->checkOriginal($original, $row);
@@ -80,7 +81,7 @@ class Precheck
             return $originalCheck;
         }
         if ((float)$creditmemo->getGrandTotal() > $this->originalTotal($original) + 0.005) {
-            return $this->blocked('The credit memo total exceeds the original invoice.');
+            return $this->blocked((string)__('The credit memo total exceeds the original invoice.'));
         }
         try {
             $data = $this->creditmemoMapper->map($creditmemo, $original);
@@ -111,8 +112,10 @@ class Precheck
         }
         foreach ($this->documentRepository->findCredits((int)$original->getId(), (int)$row->getId()) as $other) {
             if ((string)$other->getData('status') !== Document::STATUS_BLOCKED) {
-                return $this->blocked('Quaderno accepts one rectificativa per invoice; another credit memo of this'
-                    . ' invoice was already sent.');
+                return $this->blocked((string)__(
+                    'Not sent: this invoice already has a credit note, and Quaderno links only one per invoice'
+                    . ' through the API. Create this refund as a credit note directly in Quaderno.'
+                ));
             }
         }
         return null;
@@ -143,10 +146,10 @@ class Precheck
     {
         if (abs($data->linesTotal() - $data->grandTotal) > 0.005) {
             return $this->blocked((string)__(
-                'The lines total %1 does not equal the grand total %2 (adjustments, gift cards and other fees'
-                . ' are not supported yet).',
-                number_format($data->linesTotal(), 2, '.', ''),
-                number_format($data->grandTotal, 2, '.', '')
+                'Not sent: %1 of this document is an adjustment, fee or gift card, which this version cannot'
+                . ' send. Create the document in Quaderno, or leave the adjustment out (products and shipping'
+                . ' only).',
+                number_format(abs($data->grandTotal - $data->linesTotal()), 2, '.', '')
             ));
         }
         $address = $this->checkAddress($data);
@@ -206,15 +209,15 @@ class Precheck
             && $data->transactionType === DocumentData::TRANSACTION_SALE;
         if ($isSaleWithoutNif && $this->isZeroIvaTerritory($data)) {
             return $this->blocked((string)__(
-                'NIF required for Canarias / Ceuta / Melilla: these sales are exports and need a full invoice at'
-                . ' any amount (RF art. 2.2.d); without a NIF Quaderno issues a simplificada. Add the NIF to the'
-                . ' billing address and resend.'
+                'NIF required: sales to Canarias, Ceuta and Melilla are exports and need a full invoice with'
+                . ' the customer\'s NIF at any amount (RF art. 2.2.d). Add the NIF to the order\'s billing'
+                . ' address (Address > Edit), then click Resend.'
             ));
         }
         if ($isSaleWithoutNif && $data->grandTotal >= $this->config->getThreshold($data->storeId)) {
             return $this->blocked((string)__(
-                'NIF required above the simplificada threshold (%1 EUR): add the NIF to the billing address and'
-                . ' resend.',
+                'NIF required: from %1 EUR a Spanish order needs a full invoice with the customer\'s NIF.'
+                . ' Add the NIF to the order\'s billing address (Address > Edit), then click Resend.',
                 number_format($this->config->getThreshold($data->storeId), 2, '.', '')
             ));
         }

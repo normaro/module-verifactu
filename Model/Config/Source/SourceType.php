@@ -17,13 +17,13 @@ class SourceType implements OptionSourceInterface
     /**
      * Magento document types for the grid.
      *
-     * @return array<int,array{value:string,label:string}>
+     * @return array<int,array{value:string,label:\Magento\Framework\Phrase}>
      */
     public function toOptionArray(): array
     {
         $options = [];
         foreach (Document::SOURCE_LABELS as $value => $label) {
-            $options[] = ['value' => $value, 'label' => $label];
+            $options[] = ['value' => $value, 'label' => __($label)];
         }
         return $options;
     }

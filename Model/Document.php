@@ -45,6 +45,21 @@ class Document extends AbstractModel
         self::STATUS_BLOCKED => 'Blocked',
     ];
 
+    /** Labels of the provider document types */
+    public const TYPE_LABELS = [
+        self::TYPE_INVOICE => 'Invoice',
+        self::TYPE_RECEIPT => 'Simplified invoice',
+        self::TYPE_CREDIT => 'Credit note',
+    ];
+
+    /** Labels of the AEAT registration states (EstadoRegistro) */
+    public const AEAT_LABELS = [
+        'Correcto' => 'Accepted',
+        'AceptadoConErrores' => 'Accepted with errors',
+        'Incorrecto' => 'Rejected',
+        'pending' => 'Pending',
+    ];
+
     /**
      * @var string
      */
@@ -91,5 +106,38 @@ class Document extends AbstractModel
             [self::STATUS_ISSUED, self::STATUS_ISSUED_WITH_WARNING],
             true
         );
+    }
+
+    /**
+     * Label of the provider document type (Invoice, Simplified invoice, Credit note).
+     *
+     * @return string
+     */
+    public function getTypeLabel(): string
+    {
+        $type = (string)$this->getData('type');
+        return self::TYPE_LABELS[$type] ?? $type;
+    }
+
+    /**
+     * Label of the AEAT state; the AEAT code itself is in aeat_status.
+     *
+     * @return string
+     */
+    public function getAeatLabel(): string
+    {
+        $state = (string)$this->getData('aeat_status');
+        return self::AEAT_LABELS[$state] ?? $state;
+    }
+
+    /**
+     * The provider's verification page, when it is not the AEAT URL itself.
+     *
+     * @return string|null
+     */
+    public function getProviderPageUrl(): ?string
+    {
+        $permalink = (string)$this->getData('verification_permalink');
+        return $permalink !== '' && $permalink !== (string)$this->getData('aeat_qr_url') ? $permalink : null;
     }
 }

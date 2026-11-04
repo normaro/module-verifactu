@@ -201,7 +201,7 @@ class PrecheckTest extends TestCase
         $result = $this->precheck->checkInvoice($this->createMock(Invoice::class));
 
         $this->assertSame(PrecheckResult::BLOCKED, $result->outcome);
-        $this->assertStringContainsString('does not equal', (string)$result->reason);
+        $this->assertStringContainsString('is an adjustment, fee or gift card', (string)$result->reason);
     }
 
     /**
@@ -350,7 +350,7 @@ class PrecheckTest extends TestCase
         $result = $this->precheck->checkCreditmemo($this->creditmemo(10.00), $this->row(5, 1));
 
         $this->assertSame(PrecheckResult::BLOCKED, $result->outcome);
-        $this->assertStringContainsString('one rectificativa', (string)$result->reason);
+        $this->assertStringContainsString('already has a credit note', (string)$result->reason);
     }
 
     /**

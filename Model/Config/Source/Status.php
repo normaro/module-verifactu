@@ -17,13 +17,13 @@ class Status implements OptionSourceInterface
     /**
      * Options for grid filters and columns.
      *
-     * @return array<int,array{value:string,label:string}>
+     * @return array<int,array{value:string,label:\Magento\Framework\Phrase}>
      */
     public function toOptionArray(): array
     {
         $options = [];
         foreach (Document::STATUS_LABELS as $value => $label) {
-            $options[] = ['value' => $value, 'label' => $label];
+            $options[] = ['value' => $value, 'label' => __($label)];
         }
         return $options;
     }
