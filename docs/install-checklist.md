@@ -55,6 +55,11 @@ Decisions marked *(adviser)* are tax decisions: agree them with your asesor / ge
       one, and are sent before Quaderno issues the invoice; an invoice has one original (RF
       art. 14.1). The same applies to "Print Invoice" in the customer account and the admin.
       The legal invoice is Quaderno's (PDF and AEAT link in the customer's order view).
+- [ ] Decide how the customer receives Quaderno's invoice. Quaderno does **not** email documents
+      created through the API by itself (tested in a sandbox account with default preferences),
+      and v0.1 does not ask it to. Today the customer finds the PDF and the AEAT link in the order
+      view. If the customer must get it by email, check Quaderno › Settings › Preferences
+      ("Autosend…") for your account, or send it from Quaderno by hand.
 - [ ] Gift cards: not supported in v0.1. Orders paid partly with a gift card are blocked
       (totals do not add up), and the module cannot tell a multi-purpose card sold as a
       product from an ordinary product *(adviser before selling gift cards)*.
