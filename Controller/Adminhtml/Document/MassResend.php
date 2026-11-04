@@ -45,16 +45,23 @@ class MassResend extends Action implements HttpPostActionInterface
      */
     public function execute(): Redirect
     {
-        $done = 0;
+        $checked = $queued = $blocked = 0;
         try {
             $collection = $this->filter->getCollection($this->collectionFactory->create());
             foreach ($collection as $row) {
                 if ($row instanceof Document && !$row->isIssued()) {
-                    $this->resender->resend($row);
-                    $done++;
+                    $status = $this->resender->resend($row);
+                    $checked++;
+                    $blocked += (int)($status === Document::STATUS_BLOCKED);
+                    $queued += (int)($status !== Document::STATUS_BLOCKED);
                 }
             }
-            $this->messageManager->addSuccessMessage((string)__('%1 Verifactu document(s) resent.', $done));
+            $this->messageManager->addSuccessMessage((string)__(
+                '%1 documents checked: %2 queued, %3 still blocked.',
+                $checked,
+                $queued,
+                $blocked
+            ));
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }

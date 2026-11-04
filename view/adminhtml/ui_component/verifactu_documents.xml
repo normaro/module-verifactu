@@ -73,6 +73,12 @@
                 <label translate="true">Magento document</label>
             </settings>
         </column>
+        <column name="order_increment_id" sortOrder="25">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order #</label>
+            </settings>
+        </column>
         <column name="source_increment_id" sortOrder="30">
             <settings>
                 <filter>text</filter>

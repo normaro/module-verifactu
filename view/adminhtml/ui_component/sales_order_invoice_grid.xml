@@ -15,11 +15,13 @@
         </column>
         <column name="verifactu_status" component="Magento_Ui/js/grid/columns/select" sortOrder="210">
             <settings>
-                <options class="Normaro\Verifactu\Model\Config\Source\Status"/>
+                <options class="Normaro\Verifactu\Model\Config\Source\SalesGridStatus"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Verifactu</label>
             </settings>
         </column>
+        <!-- after the Verifactu columns (200, 210): Action stays the last column -->
+        <actionsColumn name="actions" sortOrder="300"/>
     </columns>
 </listing>
