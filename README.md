@@ -70,6 +70,8 @@ Recommended Magento setup:
 - Magento's own invoice and credit memo emails: disable them (Sales Emails › Invoice / Credit
   Memo) or change their templates; they show the Magento number, not the Verifactu invoice, and
   are sent before Quaderno issues it (the config section shows the same warning);
+- to email Quaderno's invoice to the customer, switch on "Autosend all automatic invoices and
+  credit notes" in Quaderno (Settings › Document preferences › Billing); it is off by default;
 - do not filter mail from `noreply@quadernoapp.com`: its "Review pending documents" email is the
   only signal about a draft outside the API.
 
