@@ -51,7 +51,7 @@ sends and fetches the AEAT state. Without a consumer every document stays `queue
 | Field | Notes |
 |---|---|
 | Enabled | per store view |
-| Environment | Sandbox or Live; the module refuses a live API host in sandbox mode and the reverse |
+| Environment | Sandbox (test) or Live (production); the module refuses a live API host in sandbox mode and the reverse |
 | API URL | your account URL, e.g. `https://<account>.sandbox-quadernoapp.com/api/` |
 | Private API key | stored encrypted |
 | Send invoices | **On capture** (default: only paid invoices) or **On invoice** (every invoice) |

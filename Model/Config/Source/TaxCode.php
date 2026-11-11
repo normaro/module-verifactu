@@ -21,7 +21,7 @@ class TaxCode implements OptionSourceInterface
     public function toOptionArray(): array
     {
         return [
-            ['value' => 'standard', 'label' => __('Standard')],
+            ['value' => 'standard', 'label' => __('Standard rate')],
             ['value' => 'reduced', 'label' => __('Reduced (10 % and 4 %)')],
             ['value' => 'exempt', 'label' => __('Exempt (0 %)')],
         ];
