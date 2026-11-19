@@ -9,11 +9,11 @@ the records to the AEAT is done by Quaderno.
 **A paid Quaderno account with the Verifactu integration enabled is required.** Verifactu
 cannot be switched off again in a Quaderno account: test in a Quaderno sandbox first.
 
-Status: **v0.1, pre-release.** Tested against the Quaderno sandbox; not yet used in production.
+Status: tested against the Quaderno sandbox; not yet used in production.
 
 ## Requirements
 
-- Magento Open Source / Adobe Commerce **2.4.7 or 2.4.8**
+- Magento Open Source **2.4.7 or 2.4.8** (Adobe Commerce: not tested)
 - PHP 8.1–8.3 (2.4.7) or 8.2–8.4 (2.4.8)
 - Magento cron running, and the queue consumer `verifactu.document.send` (see below)
 - A Quaderno account with the Verifactu integration active (sandbox for testing)
@@ -108,11 +108,6 @@ lines (description, SKU, amount, IVA rate), payment method, Magento order and in
 - Seller established in Canarias (IGIC), recargo de equivalencia, País Vasco / Navarra (TicketBAI)
   and SII taxpayers are not supported.
 - No webhooks: the AEAT state is polled by cron.
-
-## Installation service and support
-
-Installation, IVA mapping and a check of the first invoices, and a support subscription for
-Magento releases and AEAT changes are offered by the author: see https://normaro.es.
 
 ## License
 

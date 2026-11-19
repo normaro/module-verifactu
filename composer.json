@@ -2,7 +2,7 @@
     "name": "normaro/module-verifactu",
     "description": "Verifactu (Spain, AEAT) invoicing for Magento 2 through Quaderno: invoices, receipts and credit notes sent from Magento invoices and credit memos.",
     "type": "magento2-module",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "OSL-3.0",
     "homepage": "https://normaro.es",
     "keywords": [
