@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Normaro\Verifactu\Test\Unit\Model\Precheck;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Normaro\Verifactu\Model\Precheck\NifValidator;
 
@@ -22,6 +23,7 @@ class NifValidatorTest extends TestCase
      * @param bool $valid
      * @return void
      */
+    #[DataProvider('cases')]
     public function testIsValid(string $nif, bool $valid): void
     {
         $this->assertSame($valid, (new NifValidator())->isValid($nif));

@@ -13,8 +13,8 @@ Status: tested against the Quaderno sandbox; not yet used in production.
 
 ## Requirements
 
-- Magento Open Source **2.4.7 or 2.4.8** (Adobe Commerce: not tested)
-- PHP 8.1–8.3 (2.4.7) or 8.2–8.4 (2.4.8)
+- Magento Open Source **2.4.7, 2.4.8 or 2.4.9** (Adobe Commerce: not tested)
+- PHP 8.1–8.3 (2.4.7), 8.2–8.4 (2.4.8) or 8.3–8.5 (2.4.9)
 - Magento cron running, and the queue consumer `verifactu.document.send` (see below)
 - A Quaderno account with the Verifactu integration active (sandbox for testing)
 

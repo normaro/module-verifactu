@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Normaro\Verifactu\Test\Unit\Model\Log;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Normaro\Verifactu\Model\Log\Masker;
 
@@ -35,6 +36,7 @@ class MaskerTest extends TestCase
      * @param string $masked
      * @return void
      */
+    #[DataProvider('taxIds')]
     public function testTaxIdsInTextAreMasked(string $taxId, string $masked): void
     {
         $this->assertSame('NIF ' . $masked . ' is invalid', $this->masker->maskString('NIF ' . $taxId . ' is invalid'));

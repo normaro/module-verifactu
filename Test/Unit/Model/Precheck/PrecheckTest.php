@@ -11,6 +11,7 @@ use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Model\Order\Creditmemo;
 use Magento\Sales\Model\Order\Invoice;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Normaro\Verifactu\Model\Config;
 use Normaro\Verifactu\Model\Document;
@@ -147,6 +148,7 @@ class PrecheckTest extends TestCase
      * @param string $missing
      * @return void
      */
+    #[DataProvider('incompleteAddresses')]
     public function testIncompleteAddressIsBlocked(
         string $type,
         ?string $street,
@@ -228,6 +230,7 @@ class PrecheckTest extends TestCase
      * @param string $postcode
      * @return void
      */
+    #[DataProvider('zeroIvaPostcodes')]
     public function testZeroIvaTerritoryWithoutNifIsBlocked(string $postcode): void
     {
         $this->invoiceMapper->method('map')->willReturn($this->territorySale($postcode, null, 0.0));

@@ -11,3 +11,15 @@ parameters:
         - vendor/*
     magento:
         magentoRoot: /var/www/html
+    # One config for PHPStan 1 (Magento 2.4.7 / 2.4.8) and PHPStan 2 (2.4.9):
+    # - PHPStan 2 cannot parse PHPMD's @SuppressWarnings(PHPMD.Rule), the form Magento core uses;
+    # - the tests carry both @dataProvider (PHPUnit 9) and #[DataProvider] (PHPUnit 10+); with
+    #   PHPUnit 9 the attribute class does not exist.
+    ignoreErrors:
+        -
+            identifier: phpDoc.parseError
+            message: '#@SuppressWarnings#'
+        -
+            identifier: attribute.notFound
+            message: '#PHPUnit\\Framework\\Attributes\\DataProvider#'
+    reportUnmatchedIgnoredErrors: false

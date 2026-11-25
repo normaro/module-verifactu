@@ -2,7 +2,7 @@
     "name": "normaro/module-verifactu",
     "description": "Verifactu (Spain, AEAT) invoicing for Magento 2 through Quaderno: invoices, receipts and credit notes sent from Magento invoices and credit memos.",
     "type": "magento2-module",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "OSL-3.0",
     "homepage": "https://normaro.es",
     "keywords": [
@@ -25,20 +25,21 @@
         }
     ],
     "require": {
-        "magento/framework": ">=103.0.7 <103.0.9",
-        "magento/framework-message-queue": ">=100.4.7 <100.4.9",
-        "magento/module-admin-notification": ">=100.4.6 <100.4.8",
-        "magento/module-backend": ">=102.0.7 <102.0.9",
-        "magento/module-catalog": ">=104.0.7 <104.0.9",
-        "magento/module-config": ">=101.2.7 <101.2.9",
-        "magento/module-cron": ">=100.4.7 <100.4.9",
-        "magento/module-customer": ">=103.0.7 <103.0.9",
-        "magento/module-message-queue": ">=100.4.7 <100.4.9",
-        "magento/module-mysql-mq": ">=100.4.5 <100.4.7",
-        "magento/module-sales": ">=103.0.7 <103.0.9",
-        "magento/module-store": ">=101.1.7 <101.1.9",
-        "magento/module-tax": ">=100.4.7 <100.4.9",
-        "magento/module-ui": ">=101.2.7 <101.2.9"
+        "php": ">=8.1 <8.6",
+        "magento/framework": ">=103.0.7 <104",
+        "magento/framework-message-queue": ">=100.4.7 <101",
+        "magento/module-admin-notification": ">=100.4.6 <101",
+        "magento/module-backend": ">=102.0.7 <103",
+        "magento/module-catalog": ">=104.0.7 <105",
+        "magento/module-config": ">=101.2.7 <102",
+        "magento/module-cron": ">=100.4.7 <101",
+        "magento/module-customer": ">=103.0.7 <104",
+        "magento/module-message-queue": ">=100.4.7 <101",
+        "magento/module-mysql-mq": ">=100.4.5 <101",
+        "magento/module-sales": ">=103.0.7 <104",
+        "magento/module-store": ">=101.1.7 <102",
+        "magento/module-tax": ">=100.4.7 <101",
+        "magento/module-ui": ">=101.2.7 <102"
     },
     "autoload": {
         "files": [
